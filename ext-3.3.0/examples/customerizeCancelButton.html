@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../resources/css/ext-all.css" />
+    <script src="../adapter/ext/ext-base.js"></script>
+    <script src="../ext-all.js"></script>
+    <title>this is cancel button test</title>
+    <style>
+        #test .btn {
+            color: red
+        }
+    </style>
+    <script>
+        Ext.onReady(function () {
+            Ext.ns('com.ita');
+            com.ita.CancelButton = Ext.extend(Ext.Button, {
+                text: 'Cancel',
+                initComponent: function () {
+                    com.ita.CancelButton.superclass.initComponent.call(this);
+                    this.on('click', this.onButtonClick, this);
+                },
+                onButtonClick: function (oEvent) {
+                    Ext.Msg.alert('Cancel Button', 'This is customized cancel button, you clicked me. ');
+                }
+            });
+            Ext.reg('com.ita.CancelButton', com.ita.CancelButton);
+
+            var panel = new Ext.Panel({
+                renderTo: 'test',
+                items: [{
+                    xtype: 'com.ita.CancelButton',
+                }]
+            });
+
+
+        })
+    </script>
+</head>
+
+<body>
+    <div id="test"></div>
+</body>
+
+</html>
